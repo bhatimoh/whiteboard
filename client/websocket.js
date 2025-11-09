@@ -11,7 +11,9 @@ class SocketConnection {
       : "https://intuitive-reverence-production.up.railway.app/"; // your deployed backend URL
 
     this.socket = io(backendURL, { transports: ["websocket"] });
-
+    this.socket.on("connect", () => {
+      console.log("Connected to server:", this.socket.id);
+    });
     // Users list (name + color)
     this.socket.on("users:update", (users) => {
       this.board.updateActiveUsers(users);
