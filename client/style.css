@@ -1,0 +1,214 @@
+/* ==============================
+   🔧 Base Layout
+============================== */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #0f1113;
+  color: #e5e5e5;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ==============================
+   🎨 Canvas Board Area
+============================== */
+.board {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0f1113;
+  position: relative;
+}
+
+.canvas-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#history {
+  z-index: 1;
+}
+#remote {
+  z-index: 2;
+}
+#live {
+  z-index: 3;
+  pointer-events: all;
+}
+#cursor-layer {
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ==============================
+   🧩 Sidebar (Users + Toolbox)
+============================== */
+.sidebar {
+  width: 260px;
+  background: rgba(25, 25, 25, 0.85);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+/* Active Users Section */
+.sidebar h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #10a37f;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+}
+
+#user-list {
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.user {
+  font-size: 15px;
+  margin: 6px 0;
+  word-wrap: break-word;
+}
+
+/* Toolbox Section */
+.toolbox {
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.toolbox h4 {
+  margin-top: 0;
+  color: #10a37f;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.tool-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.tool {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tool:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.tool.active {
+  background: #10a37f;
+  color: white;
+}
+
+.divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 12px 0;
+}
+
+/* ==============================
+   📱 Mobile Responsive Sidebar
+============================== */
+
+/* Toggle button */
+.menu-btn {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  z-index: 10;
+  font-size: 26px;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 850px) {
+  .sidebar {
+    position: absolute;
+    left: -280px;
+    top: 0;
+    height: 100%;
+    z-index: 20;
+    width: 240px;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  /* prevent board shrinking */
+  .board {
+    width: 100%;
+  }
+}

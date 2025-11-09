@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collaborative Whiteboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h3>Active Users</h3>
+        <ul id="user-list"></ul>
+
+        <!-- ✨ Toolbox Section -->
+        <div class="toolbox">
+          <h4>Tools</h4>
+          <div class="tool-row">
+            <button class="tool" title="Brush">✏️</button>
+            <button class="tool" title="Eraser">🩹</button>
+            <button class="tool" title="Line">〣</button>
+            <button class="tool" title="Rectangle">▭</button>
+            <button class="tool" title="Circle">◯</button>
+          </div>
+
+          <div class="divider"></div>
+
+          <h4>History</h4>
+          <div class="tool-row">
+            <button id="undo" class="tool" title="Undo">↶</button>
+            <button id="redo" class="tool" title="Redo">↷</button>
+            <button id="clear" class="tool" title="Clear Board">🗑</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Canvas Area -->
+      <main class="board">
+        <div class="canvas-container">
+          <canvas id="history"></canvas>
+          <canvas id="remote"></canvas>
+          <canvas id="live"></canvas>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
