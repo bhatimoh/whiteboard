@@ -6,11 +6,11 @@ import { io } from "https://cdn.socket.io/4.7.2/socket.io.esm.min.js";
 class SocketConnection {
   constructor(board) {
     this.board = board;
-    this.socket = io("http://localhost:3000");
+    const backendURL = window.location.hostname.includes("localhost")
+      ? "http://localhost:3000"
+      : "https://intuitive-reverence-production.up.railway.app/"; // your deployed backend URL
 
-    this.socket.on("connect", () => {
-      console.log("🟢 Connected to server:", this.socket.id);
-    });
+    this.socket = io(backendURL, { transports: ["websocket"] });
 
     // Users list (name + color)
     this.socket.on("users:update", (users) => {
